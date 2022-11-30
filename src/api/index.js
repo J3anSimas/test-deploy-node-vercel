@@ -11,7 +11,7 @@ server.post('/api', (request, response) => {
   const t = responseTwilio.message('Voce acabou de enviar uma msg')
   t.body('To ficando sem saber o que fazer ')
   console.log("teste");
-  response.send()
+  response.send(responseTwilio.toString())
 })
 
 
