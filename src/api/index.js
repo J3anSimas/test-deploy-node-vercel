@@ -10,7 +10,7 @@ server.post('/api', (request, response) => {
   const data = JSON.stringify(request.body)
 
   // fs.writeFileSync('request.txt', request.body.toString())
-  console.log(request.params);
+  console.log(request.headers);
   const responseTwilio = new twiml.MessagingResponse()
   const t = responseTwilio.message('Voce acabou de enviar uma msg')
   console.log("teste");
