@@ -1,13 +1,16 @@
 require('dotenv').config()
 
+const { twiml } = require('twilio')
 const fastify = require('fastify')
 const PORT = process.env.PORT || 3000
 const server = fastify({
   logger: true
 })
 
-server.get('/api', (request, response) => {
-  return 'Funcionando'
+server.post('/api', (request, response) => {
+  const response = twiml.MessagingResponse
+  console.log(response.message())
+
 })
 
 
