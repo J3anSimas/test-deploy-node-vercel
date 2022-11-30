@@ -1,23 +1,18 @@
 require('dotenv').config()
 
 const { twiml } = require('twilio')
-const fastify = require('fastify')
+const express = require('express')
 const PORT = process.env.PORT || 3000
-const server = fastify({
-  logger: true
+const server = express()
+
+
+server.post('/api', (request, response) => {
+  const responseTwilio = twiml.MessagingResponse
+  console.log(responseTwilio.message())
+  response.send(`Você acabou de enviar a mensagem`)
 })
 
-server.post('/api', (request, _) => {
-  const response = twiml.MessagingResponse
-  console.log(response.message())
 
-})
-
-
-server.listen({ port: PORT }, (err, address) => {
-  if (err) {
-    server.log.error(err)
-    process.exit(1)
-  }
-  server.log.info(`Server running on ${address}`)
+server.listen(PORT, () => {
+  console.log(`Server running on ${PORT}`)
 })
