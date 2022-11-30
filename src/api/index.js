@@ -7,7 +7,7 @@ const server = express()
 
 
 server.post('/api', (request, response) => {
-  const responseTwilio = twiml.MessagingResponse
+  const responseTwilio = twiml.MessagingResponse()
   console.log(responseTwilio)
   response.send(`Você acabou de enviar a mensagem`)
 })
