@@ -1,0 +1,11 @@
+{
+  "name": "test-deploy-vercel",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Jean Simas <jeansimas16@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "fastify": "^4.10.2"
+  }
+}
