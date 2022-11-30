@@ -7,7 +7,7 @@ const server = fastify({
   logger: true
 })
 
-server.post('/api', (request, response) => {
+server.post('/api', (request, _) => {
   const response = twiml.MessagingResponse
   console.log(response.message())
 
