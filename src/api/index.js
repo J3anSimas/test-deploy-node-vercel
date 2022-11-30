@@ -6,7 +6,7 @@ const server = fastify({
   logger: true
 })
 
-server.get('/', (request, response) => {
+server.get('/api', (request, response) => {
   return 'Funcionando'
 })
 
