@@ -9,4 +9,4 @@ async function getOpenSession(userId, userProfile) {
   return session
 }
 
-module.exports = geOpenSession
+module.exports = getOpenSession
