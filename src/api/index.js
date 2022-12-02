@@ -1,16 +1,22 @@
 require('dotenv').config()
 const bodyParser = require('body-parser')
-const { twiml } = require('twilio')
+const twilioClient = require('twilio')(accountSid, authToken)
 const express = require('express')
+const createSession = require('../services/createSession/createSession')
+const getOpenSession = require('../services/getOpenSession/getOpenSession')
+
+const app = express()
+const server = http.createServer(app)
+
 const PORT = process.env.PORT || 3000
-const server = express()
-server.use(bodyParser.json())
-server.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
-server.post('/api', (request, response) => {
-  const data = JSON.stringify(request.body)
 
-  // fs.writeFileSync('request.txt', request.body.toString())
+app.post('/api', (request, response) => {
+  const userId = request.body.WaId
+  const profileName = request.body.ProfileName
+  const session = getOpenSession(userId)
   console.log(request.body);
   const responseTwilio = new twiml.MessagingResponse()
   const t = responseTwilio.message('Voce acabou de enviar uma msg')
@@ -18,7 +24,6 @@ server.post('/api', (request, response) => {
   response.send(responseTwilio.toString())
 })
 
-
 server.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`)
+  console.log('Listening')
 })

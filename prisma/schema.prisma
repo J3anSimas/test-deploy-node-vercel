@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model ChatbotSession {
+  id          String    @id @default(cuid())
+  clientNum   String    @unique
+  profileName String
+  state       String
+  messages    Message[]
+  createdAt   DateTime  @default(now())
+  updateAd    DateTime  @updatedAt
+}
+
+model Message {
+  id               String          @id @default(cuid())
+  texto            String
+  owner            String
+  ChatbotSession   ChatbotSession? @relation(fields: [chatbotSessionId], references: [id])
+  chatbotSessionId String?
+  createdAt        DateTime        @default(now())
+
+  @@index([chatbotSessionId])
+}
